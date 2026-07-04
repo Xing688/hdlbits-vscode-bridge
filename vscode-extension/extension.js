@@ -123,12 +123,30 @@ async function handleOpenProblem(data) {
     const fileName = `${safeName}.v`;
     const filePath = path.join(workspacePath, fileName);
 
-    // Build file content: module declaration (from web) + body code (user edit) + endmodule
-    let content = `// hdlbits: ${problemId}\n`;
-    content += `${portDeclaration}\n\n`;
+    // Build file content: compiler directives + module declaration + body code + endmodule
+    // Extract compiler directives from portDeclaration (e.g. `default_nettype none)
+    // to avoid duplication with bodyCode (extractBody can leave leftover directives)
+    const directiveRegex = /^`[^\n]*\n/gm;
+    let compilerDirectives = '';
+    let cleanPortDecl = portDeclaration;
 
-    if (bodyCode && bodyCode.trim()) {
-        content += bodyCode.trim() + '\n';
+    const directiveMatch = portDeclaration.match(directiveRegex);
+    if (directiveMatch) {
+        compilerDirectives = directiveMatch.join('');
+        cleanPortDecl = portDeclaration.replace(directiveRegex, '').trim();
+    }
+
+    // Strip compiler directives from bodyCode (they already go above module declaration)
+    let cleanBody = bodyCode ? bodyCode.replace(directiveRegex, '').trim() : '';
+
+    let content = `// hdlbits: ${problemId}\n`;
+    if (compilerDirectives) {
+        content += compilerDirectives;
+    }
+    content += `${cleanPortDecl}\n\n`;
+
+    if (cleanBody) {
+        content += cleanBody + '\n';
     } else {
         content += '    // Write your solution here\n';
     }

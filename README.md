@@ -102,24 +102,24 @@ VS Code 设置（`Ctrl+,` → 搜索 `hdlbits`）：
 ### 使用方式
 
 ```
-┌─────────────────────┐         ┌──────────────────────┐
-│   HDLBits (Chrome)  │         │   VS Code            │
-│                     │         │                      │
-│  [📝 Open in VS Code]│ ──POST─→│  /open 端点           │
-│                     │         │  创建 .v 文件         │
-│                     │         │  打开编辑器           │
-│                     │         │                      │
-│                     │         │  [📤 HDLBits] 状态栏  │
-│                     │ ←─轮询──│  提交到 HDLBits       │
-│  🔄 自动刷新页面     │         │  更新时间戳           │
-└─────────────────────┘         └──────────────────────┘
+┌───────────────────────────────┐       ┌───────────────────────────┐
+│  HDLBits (Browser)            │       │  VS Code                  │
+│                               │       │                           │
+│  [Open in VS Code]            │─POST─→│  /open endpoint           │
+│                               │       │  Create .v file           │
+│                               │       │  Open editor              │
+│                               │       │                           │
+│                               │       │  [HDLBits] status bar     │
+│                               │←─poll─│  Submit to HDLBits        │
+│  Auto-refresh page            │       │  Update timestamp         │
+└───────────────────────────────┘       └───────────────────────────┘
 ```
 
 1. 打开 HDLBits 题目页面
 2. 看到 VS Code Bridge 横幅（绿色表示已连接）
-3. 点击 **📝 Open in VS Code** → 代码在 VS Code 中打开
+3. 点击 **Open in VS Code** 按钮 → 代码在 VS Code 中打开
 4. 在 VS Code 中编写代码，保存
-5. 点击状态栏的 **📤 HDLBits** 按钮（或 `Ctrl+Shift+P` → `HDLBits: Submit Current File`）
+5. 点击状态栏的 **HDLBits** 按钮（或 `Ctrl+Shift+P` → `HDLBits: Submit Current File`）
 6. 提交完成后 HDLBits 页面自动刷新显示结果
 
 ### macOS / Linux 用户
@@ -156,21 +156,21 @@ HDLBits 提交 API 非常简单：
 ```
 hdlbits-vscode-bridge/
 ├── README.md
-├── vscode-extension/          # VS Code 扩展
-│   ├── package.json           #   扩展清单 & 配置定义
-│   ├── extension.js           #   主逻辑（HTTP 服务、命令、窗口前置）
-│   └── .vscodeignore          #   打包排除规则
-├── chrome-extension/          # Chrome 扩展
-│   ├── manifest.json          #   扩展清单 (Manifest V3)
-│   ├── content.js             #   内容脚本（按钮注入、代码保护、自动刷新）
-│   ├── background.js          #   Service Worker
-│   ├── style.css              #   按钮 & 横幅样式
-│   └── icons/                 #   扩展图标
+├── vscode-extension/              # VS Code extension
+│   ├── package.json               #   manifest & settings definition
+│   ├── extension.js               #   HTTP server, commands, window focus
+│   └── .vscodeignore              #   packaging exclude rules
+├── chrome-extension/              # Chrome extension
+│   ├── manifest.json              #   extension manifest (Manifest V3)
+│   ├── content.js                 #   button injection, translate guard, auto-refresh
+│   ├── background.js              #   service worker
+│   ├── style.css                  #   button & banner styles
+│   └── icons/                     #   extension icons
 │       ├── icon16.png
 │       ├── icon48.png
 │       └── icon128.png
-└── submit-tool/               # 提交工具
-    └── hdlbits_submit.cpp     #   C++ 源码 (WinHTTP)
+└── submit-tool/                   # submit tool
+    └── hdlbits_submit.cpp         #   C++ source (WinHTTP)
 ```
 
 ### 协议
@@ -289,9 +289,9 @@ VS Code settings (`Ctrl+,` → search `hdlbits`):
 
 1. Open an HDLBits problem page
 2. See the VS Code Bridge banner (green = connected)
-3. Click **📝 Open in VS Code** → code opens in VS Code
+3. Click **Open in VS Code** → code opens in VS Code
 4. Edit in VS Code, save
-5. Click **📤 HDLBits** status bar button (or `Ctrl+Shift+P` → `HDLBits: Submit Current File`)
+5. Click **HDLBits** status bar button (or `Ctrl+Shift+P` → `HDLBits: Submit Current File`)
 6. HDLBits page auto-refreshes with results
 
 ### macOS / Linux
@@ -307,17 +307,17 @@ The submit tool (`hdlbits_submit.cpp`) uses Windows WinHTTP. macOS/Linux users c
 ### Architecture
 
 ```
-┌─────────────────────┐         ┌──────────────────────┐
-│   HDLBits (Chrome)  │         │   VS Code            │
-│                     │         │                      │
-│  [📝 Open in VS Code]│ ──POST─→│  /open endpoint      │
-│                     │         │  Creates .v file     │
-│                     │         │  Opens editor        │
-│                     │         │                      │
-│                     │         │  [📤 HDLBits] status  │
-│                     │ ←─poll──│  Submits to HDLBits  │
-│  🔄 Auto-refresh    │         │  Updates timestamp   │
-└─────────────────────┘         └──────────────────────┘
+┌───────────────────────────────┐       ┌───────────────────────────┐
+│  HDLBits (Browser)            │       │  VS Code                  │
+│                               │       │                           │
+│  [Open in VS Code]            │─POST─→│  /open endpoint           │
+│                               │       │  Create .v file           │
+│                               │       │  Open editor              │
+│                               │       │                           │
+│                               │       │  [HDLBits] status bar     │
+│                               │←─poll─│  Submit to HDLBits        │
+│  Auto-refresh page            │       │  Update timestamp         │
+└───────────────────────────────┘       └───────────────────────────┘
 ```
 
 ### License

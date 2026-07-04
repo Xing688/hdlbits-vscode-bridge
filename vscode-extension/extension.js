@@ -126,7 +126,7 @@ async function handleOpenProblem(data) {
     // Build file content: compiler directives + module declaration + body code + endmodule
     // Extract compiler directives from portDeclaration (e.g. `default_nettype none)
     // to avoid duplication with bodyCode (extractBody can leave leftover directives)
-    const directiveRegex = /^`[^\n]*\n/gm;
+    const directiveRegex = /^`[^\n]*(\n|$)/gm;
     let compilerDirectives = '';
     let cleanPortDecl = portDeclaration;
 

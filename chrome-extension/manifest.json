@@ -1,0 +1,30 @@
+{
+    "manifest_version": 3,
+    "name": "HDLBits VS Code Bridge",
+    "version": "1.0",
+    "description": "Adds 'Open in VS Code' button on HDLBits problem pages and bridges submission back to VS Code",
+    "permissions": ["activeTab"],
+    "host_permissions": [
+        "https://hdlbits.01xz.net/*",
+        "http://127.0.0.1:*/*"
+    ],
+    "action": {
+        "default_title": "HDLBits VS Code Bridge"
+    },
+    "content_scripts": [
+        {
+            "matches": ["https://hdlbits.01xz.net/wiki/*"],
+            "js": ["content.js"],
+            "css": ["style.css"],
+            "run_at": "document_start"
+        }
+    ],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "icons": {
+        "16": "icons/icon16.png",
+        "48": "icons/icon48.png",
+        "128": "icons/icon128.png"
+    }
+}

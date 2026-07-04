@@ -1,0 +1,53 @@
+{
+    "name": "hdlbits-connector",
+    "displayName": "HDLBits Connector",
+    "description": "Connect VS Code with HDLBits — edit Verilog in VS Code, submit to HDLBits, and receive problems from your browser",
+    "version": "1.0.0",
+    "publisher": "fpga-toolkit",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/your-username/hdlbits-vscode-bridge"
+    },
+    "engines": {
+        "vscode": "^1.80.0"
+    },
+    "categories": ["Other", "Programming Languages"],
+    "keywords": ["hdlbits", "verilog", "fpga", "hardware", "digital-design"],
+    "activationEvents": [
+        "onStartupFinished"
+    ],
+    "main": "./extension.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "hdlbits.submit",
+                "title": "HDLBits: Submit Current File"
+            },
+            {
+                "command": "hdlbits.newProblem",
+                "title": "HDLBits: Create New Problem File"
+            }
+        ],
+        "configuration": {
+            "title": "HDLBits Connector",
+            "properties": {
+                "hdlbits.serverPort": {
+                    "type": "number",
+                    "default": 19876,
+                    "description": "Local HTTP server port for Chrome extension communication"
+                },
+                "hdlbits.workspacePath": {
+                    "type": "string",
+                    "default": "",
+                    "description": "Directory for HDLBits .v files (default: first workspace folder)"
+                },
+                "hdlbits.submitScript": {
+                    "type": "string",
+                    "default": "hdlbits_submit",
+                    "description": "Path or command name of the HDLBits submit tool. If the binary is in your PATH, use 'hdlbits_submit'. Otherwise set the absolute path (e.g. /home/user/bin/hdlbits_submit or C:/tools/hdlbits_submit.exe)."
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,17 @@
+# Build artifacts
+*.exe
+*.vsix
+*.o
+*.obj
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Node (if any)
+node_modules/

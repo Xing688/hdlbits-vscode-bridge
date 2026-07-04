@@ -1,0 +1,67 @@
+/* ── HDLBits VS Code Bridge — Styles ──────────────────── */
+
+/* The "Open in VS Code" button */
+.vscode-bridge-btn {
+    display: inline-block !important;
+    margin-left: 10px !important;
+    padding: 8px 16px !important;
+    background: #007acc !important;
+    color: #fff !important;
+    border: none !important;
+    border-radius: 4px !important;
+    cursor: pointer !important;
+    font-size: 14px !important;
+    font-family: inherit !important;
+    font-weight: 500 !important;
+    line-height: 1.4 !important;
+    transition: background 0.2s, transform 0.1s !important;
+    vertical-align: middle !important;
+    white-space: nowrap !important;
+}
+
+.vscode-bridge-btn:hover {
+    background: #005a9e !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 2px 8px rgba(0, 122, 204, 0.3) !important;
+}
+
+.vscode-bridge-btn:active {
+    transform: translateY(0) !important;
+}
+
+.vscode-bridge-btn:disabled {
+    cursor: default !important;
+    transform: none !important;
+}
+
+/* Banner in the submit box */
+#vscode-bridge-banner {
+    animation: vscode-slide-in 0.3s ease-out;
+}
+
+@keyframes vscode-slide-in {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Toast */
+#vscode-bridge-toast {
+    animation: vscode-toast-in 0.3s ease-out;
+}
+
+@keyframes vscode-toast-in {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
